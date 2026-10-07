@@ -1302,6 +1302,204 @@
     </div>
   </div>
 
+  <!-- ══════════════════════════════════════════════════════════════
+       FORM — moved above the article, directly under the header, so
+       it's the first thing visitors see (no scrolling past the
+       headline/photo to reach it). Wrapped in .main-container for the
+       same max-width/padding .article-wrap uses.
+  ══════════════════════════════════════════════════════════════ -->
+  <div class="main-container" style="padding-top:22px;">
+  <!-- ══════════════════════════════════════════════════════════
+       FORM — directly under the photo (no quiz).
+       TrustedForm injects its hidden xxTrustedFormCertUrl input into
+       #softleadForm on page load.
+  ═══════════════════════════════════════════════════════════════ -->
+  <div class="card form-card" id="softleadBox">
+    <div class="quiz-banner">
+      See what you may qualify for &mdash; <span>takes about 1 minute</span>
+    </div>
+    <div class="card-body">
+
+      <div id="formWrap">
+        <div class="trust-row" style="margin-bottom:14px;">
+          <div class="ti">
+            <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+            Takes about 1 minute
+          </div>
+          <div class="ti">
+            <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+            No obligation
+          </div>
+          <div class="ti">
+            <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
+            100% free to check
+          </div>
+        </div>
+
+        <div class="softlead-sub">What applies depends on your state, your situation and the carrier, so a
+          licensed advisor will look at your specifics and follow up by phone, text or email, whichever
+          works for you.</div>
+
+        <form id="softleadForm" name="callback-request" method="POST">
+                      <!-- Honeypot: real visitors never see or fill this -->
+                      <p class="visually-hidden"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+
+                      <!-- ── HIDDEN LEADCONDUIT FIELDS ─────────────────────────────
+                           Names match the LeadConduit flow's HTTP parameters.
+                           data-from = URL parameter(s) to fill from, first match
+                           wins; values are captured on landing and kept for the
+                           session, and a value that is already filled is never
+                           overwritten. Fields without data-from are set on submit.
+                      ─────────────────────────────────────────────────────────── -->
+                      <div id="lcHidden" hidden>
+                        <!-- Set on submit -->
+                        <input type="hidden" name="trustedform_cert_url">
+                        <input type="hidden" name="zipcode_sha">
+                        <input type="hidden" name="opt_in">
+                        <input type="hidden" name="landing_page">
+                        <input type="hidden" name="source_sha" value="senior_healthcare_advisors_web">
+                        <input type="hidden" name="source_timestamp">
+                        <input type="hidden" name="device_category">
+                        <input type="hidden" name="device_sha">
+                        <input type="hidden" name="country" value="US">
+                        <input type="hidden" name="platform_ghl_sha">
+
+                        <!-- Meta — from the tracking URL (ad_id, adset_id, campaign_id,
+                             ad_name, adset_name, campaign_name, source, placement) -->
+                        <input type="hidden" name="facebook.ad_id"        data-from="ad_id,adid">
+                        <input type="hidden" name="facebook.adset_id"     data-from="adset_id">
+                        <input type="hidden" name="facebook.campaign_id"  data-from="campaign_id">
+                        <input type="hidden" name="facebook.ad_name"      data-from="ad_name">
+                        <input type="hidden" name="facebook.adset_name"   data-from="adset_name">
+                        <input type="hidden" name="facebook.campaign_name" data-from="campaign_name">
+                        <input type="hidden" name="facebook.platform"     data-from="source,site_source_name">
+
+                        <!-- GHL / generic attribution slots -->
+                        <input type="hidden" name="sub_id_sha"            data-from="ad_id,adid,sub_id,sub1">
+                        <input type="hidden" name="ad_id_ghl_sha"         data-from="ad_id,adid">
+                        <input type="hidden" name="ad_group_id_ghl_sha"   data-from="adset_id,adgroup_id">
+                        <input type="hidden" name="campaign_id_ghl_sha"   data-from="campaign_id">
+                        <input type="hidden" name="medium_ghl_sha"        data-from="utm_medium">
+                        <input type="hidden" name="term_ghl_sha"          data-from="utm_term">
+                        <input type="hidden" name="utm_source_ghl_sha"    data-from="utm_source">
+
+                        <!-- Click IDs (auto-appended by each ad platform) -->
+                        <input type="hidden" name="meta_click_id_ghl_sha"      data-from="fbclid">
+                        <input type="hidden" name="gclid_sha"                  data-from="gclid">
+                        <input type="hidden" name="google_click_id_ghl_sha"    data-from="gclid">
+                        <input type="hidden" name="google.clid"                data-from="gclid">
+                        <input type="hidden" name="microsoft_click_id_ghl_sha" data-from="msclkid">
+                      </div>
+
+                      <div class="softlead-row">
+                        <div class="softlead-field">
+                          <label for="sl-first">First Name</label>
+                          <input type="text" id="sl-first" name="first_name" autocomplete="given-name" required>
+                        </div>
+                        <div class="softlead-field">
+                          <label for="sl-last">Last Name</label>
+                          <input type="text" id="sl-last" name="last_name" autocomplete="family-name" required>
+                        </div>
+                      </div>
+
+                      <div class="softlead-row">
+                        <div class="softlead-field">
+                          <label for="sl-zip">ZIP Code</label>
+                          <input type="tel" id="sl-zip" name="postal_code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" required>
+                        </div>
+                        <div class="softlead-field">
+                          <label for="sl-phone">Phone Number</label>
+                          <input type="tel" id="sl-phone" name="phone_1" inputmode="tel" autocomplete="tel" required>
+                        </div>
+                      </div>
+
+                      <div class="softlead-field softlead-field-full">
+                        <label for="sl-email">Email Address</label>
+                        <input type="email" id="sl-email" name="email" autocomplete="email" required>
+                      </div>
+
+                      <!-- Tagged consent (use_tagged_consent=true): TrustedForm
+                           records the element tagged consent-language as the exact
+                           wording the visitor agreed to, and the checkbox/submit
+                           as the opt-in action. -->
+                      <label class="softlead-consent">
+                        <input type="checkbox" id="sl-consent" name="consent" required data-tf-element-role="consent-opt-in">
+                        <span data-tf-element-role="consent-language">By submitting, I agree to be contacted by a licensed insurance agent by phone, text,
+                          or email, including by automated systems or prerecorded messages, about home
+                          healthcare benefit insurance options. Consent is not a condition of
+                          purchase. Message and data rates may apply.</span>
+                      </label>
+
+                      <button type="submit" class="softlead-submit" data-tf-element-role="submit">Get More Info &rarr;</button>
+                      <div class="softlead-note">&#128274; Your information is only shared with a licensed agent. It's never sold.</div>
+                    </form>
+      </div>
+
+      <!-- ── AFTER SUBMIT ── shown in place of the form; the phone
+           number becomes visible only now (PHONE VISIBILITY GATE). -->
+      <div id="softleadThanks" hidden>
+        <div class="approved-hero">
+          <div class="approved-check">
+            <svg viewBox="0 0 24 24">
+              <polyline points="20,6 9,17 4,12" stroke-linecap="round" stroke-linejoin="round"></polyline>
+            </svg>
+          </div>
+          <div class="approved-title">Got it, thank you!</div>
+          <div class="approved-sub">A licensed advisor will reach out shortly to confirm what you may
+            qualify for. If you'd rather not wait, you can call now.</div>
+        </div>
+
+        <a href="#" id="ctaTop" class="cta-btn phone-link" data-phone-prefix="&#128222; TAP TO CALL: " hidden onclick="trackEvent('offer_click')">&nbsp;</a>
+        <div class="cta-sub-note">Takes about 10 minutes &middot; No obligation &middot; Free</div>
+        <div class="tap-fallback-note">If nothing happens when you tap: open this page in your phone's
+          browser (tap the <strong>&bull;&bull;&bull;</strong> or <strong>&#8942;</strong> menu at the top, choose
+          "Open in Browser"), then tap the number again.</div>
+
+        <!-- Testimonial — content comes from SOCIAL_PROOF.testimonial -->
+        <div class="testimonial" id="testimonialBox" hidden>
+          <div class="testi-quote" id="testiQuote"></div>
+          <div class="testi-foot">
+            <div class="testi-avatar" id="testiAvatar"></div>
+            <div>
+              <div class="testi-name" id="testiName"></div>
+              <div class="testi-meta" id="testiMeta"></div>
+            </div>
+            <div class="testi-badge" id="testiBadge"></div>
+          </div>
+        </div>
+
+        <div class="next-title">What Happens Next</div>
+        <div class="step-row">
+          <div class="step-circle">1</div>
+          <div>
+            <span class="step-strong">A licensed advisor reaches out</span>
+            <span class="step-desc">They confirm your situation and state.</span>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">2</div>
+          <div>
+            <span class="step-strong">Get your real benefit amount</span>
+            <span class="step-desc">Figures vary by carrier and plan. The advisor confirms yours.</span>
+          </div>
+        </div>
+        <div class="step-row">
+          <div class="step-circle">3</div>
+          <div>
+            <span class="step-strong">Decide with no pressure</span>
+            <span class="step-desc">No obligation to enroll. You decide if, when, and whether to proceed.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="fine">This is an advertisement for state-regulated indemnity insurance underwritten by
+        licensed insurance carriers. Benefit amounts, cost and eligibility vary by state, carrier and
+        plan, and are confirmed by a licensed agent. Not a government program or benefit, not
+        affiliated with the Social Security Administration, and not a replacement for Medicare.</div>
+
+    </div>
+  </div>
+
   <!-- TICKER -->
   <div class="urgency-ticker">
     <div class="ticker-dot"></div>
@@ -1311,7 +1509,8 @@
 
   <!-- ══════════════════════════════════════════════════════════════
        ADVERTORIAL ARTICLE
-       Order: headline → byline → photo → form → rest of the article.
+       Order: headline → byline → photo → rest of the article. The form now
+       lives above this article entirely — see FORM, right after the header.
   ══════════════════════════════════════════════════════════════ -->
   <div id="page-main">
 
@@ -1347,198 +1546,9 @@
         </figcaption>
       </figure>
 
-      <!-- ══════════════════════════════════════════════════════════
-           FORM — directly under the photo (no quiz).
-           TrustedForm injects its hidden xxTrustedFormCertUrl input into
-           #softleadForm on page load.
-      ═══════════════════════════════════════════════════════════════ -->
-      <div class="card form-card" id="softleadBox">
-        <div class="quiz-banner">
-          See what you may qualify for &mdash; <span>takes about 1 minute</span>
-        </div>
-        <div class="card-body">
-
-          <div id="formWrap">
-            <div class="trust-row" style="margin-bottom:14px;">
-              <div class="ti">
-                <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
-                Takes about 1 minute
-              </div>
-              <div class="ti">
-                <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
-                No obligation
-              </div>
-              <div class="ti">
-                <div class="ti-check"><svg viewBox="0 0 10 8"><polyline points="1,4 3.5,6.5 9,1" stroke-linecap="round" stroke-linejoin="round"></polyline></svg></div>
-                100% free to check
-              </div>
-            </div>
-
-            <div class="softlead-sub">What applies depends on your state, your situation and the carrier, so a
-              licensed advisor will look at your specifics and follow up by phone, text or email, whichever
-              works for you.</div>
-
-            <form id="softleadForm" name="callback-request" method="POST">
-                          <!-- Honeypot: real visitors never see or fill this -->
-                          <p class="visually-hidden"><label>Don't fill this out if you're human: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
-
-                          <!-- ── HIDDEN LEADCONDUIT FIELDS ─────────────────────────────
-                               Names match the LeadConduit flow's HTTP parameters.
-                               data-from = URL parameter(s) to fill from, first match
-                               wins; values are captured on landing and kept for the
-                               session, and a value that is already filled is never
-                               overwritten. Fields without data-from are set on submit.
-                          ─────────────────────────────────────────────────────────── -->
-                          <div id="lcHidden" hidden>
-                            <!-- Set on submit -->
-                            <input type="hidden" name="trustedform_cert_url">
-                            <input type="hidden" name="zipcode_sha">
-                            <input type="hidden" name="opt_in">
-                            <input type="hidden" name="landing_page">
-                            <input type="hidden" name="source_sha" value="senior_healthcare_advisors_web">
-                            <input type="hidden" name="source_timestamp">
-                            <input type="hidden" name="device_category">
-                            <input type="hidden" name="device_sha">
-                            <input type="hidden" name="country" value="US">
-                            <input type="hidden" name="platform_ghl_sha">
-
-                            <!-- Meta — from the tracking URL (ad_id, adset_id, campaign_id,
-                                 ad_name, adset_name, campaign_name, source, placement) -->
-                            <input type="hidden" name="facebook.ad_id"        data-from="ad_id,adid">
-                            <input type="hidden" name="facebook.adset_id"     data-from="adset_id">
-                            <input type="hidden" name="facebook.campaign_id"  data-from="campaign_id">
-                            <input type="hidden" name="facebook.ad_name"      data-from="ad_name">
-                            <input type="hidden" name="facebook.adset_name"   data-from="adset_name">
-                            <input type="hidden" name="facebook.campaign_name" data-from="campaign_name">
-                            <input type="hidden" name="facebook.platform"     data-from="source,site_source_name">
-
-                            <!-- GHL / generic attribution slots -->
-                            <input type="hidden" name="sub_id_sha"            data-from="ad_id,adid,sub_id,sub1">
-                            <input type="hidden" name="ad_id_ghl_sha"         data-from="ad_id,adid">
-                            <input type="hidden" name="ad_group_id_ghl_sha"   data-from="adset_id,adgroup_id">
-                            <input type="hidden" name="campaign_id_ghl_sha"   data-from="campaign_id">
-                            <input type="hidden" name="medium_ghl_sha"        data-from="utm_medium">
-                            <input type="hidden" name="term_ghl_sha"          data-from="utm_term">
-                            <input type="hidden" name="utm_source_ghl_sha"    data-from="utm_source">
-
-                            <!-- Click IDs (auto-appended by each ad platform) -->
-                            <input type="hidden" name="meta_click_id_ghl_sha"      data-from="fbclid">
-                            <input type="hidden" name="gclid_sha"                  data-from="gclid">
-                            <input type="hidden" name="google_click_id_ghl_sha"    data-from="gclid">
-                            <input type="hidden" name="google.clid"                data-from="gclid">
-                            <input type="hidden" name="microsoft_click_id_ghl_sha" data-from="msclkid">
-                          </div>
-
-                          <div class="softlead-row">
-                            <div class="softlead-field">
-                              <label for="sl-first">First Name</label>
-                              <input type="text" id="sl-first" name="first_name" autocomplete="given-name" required>
-                            </div>
-                            <div class="softlead-field">
-                              <label for="sl-last">Last Name</label>
-                              <input type="text" id="sl-last" name="last_name" autocomplete="family-name" required>
-                            </div>
-                          </div>
-
-                          <div class="softlead-row">
-                            <div class="softlead-field">
-                              <label for="sl-zip">ZIP Code</label>
-                              <input type="tel" id="sl-zip" name="postal_code" inputmode="numeric" pattern="[0-9]{5}" maxlength="5" autocomplete="postal-code" required>
-                            </div>
-                            <div class="softlead-field">
-                              <label for="sl-phone">Phone Number</label>
-                              <input type="tel" id="sl-phone" name="phone_1" inputmode="tel" autocomplete="tel" required>
-                            </div>
-                          </div>
-
-                          <div class="softlead-field softlead-field-full">
-                            <label for="sl-email">Email Address</label>
-                            <input type="email" id="sl-email" name="email" autocomplete="email" required>
-                          </div>
-
-                          <!-- Tagged consent (use_tagged_consent=true): TrustedForm
-                               records the element tagged consent-language as the exact
-                               wording the visitor agreed to, and the checkbox/submit
-                               as the opt-in action. -->
-                          <label class="softlead-consent">
-                            <input type="checkbox" id="sl-consent" name="consent" required data-tf-element-role="consent-opt-in">
-                            <span data-tf-element-role="consent-language">By submitting, I agree to be contacted by a licensed insurance agent by phone, text,
-                              or email, including by automated systems or prerecorded messages, about home
-                              healthcare benefit insurance options. Consent is not a condition of
-                              purchase. Message and data rates may apply.</span>
-                          </label>
-
-                          <button type="submit" class="softlead-submit" data-tf-element-role="submit">Get More Info &rarr;</button>
-                          <div class="softlead-note">&#128274; Your information is only shared with a licensed agent. It's never sold.</div>
-                        </form>
-          </div>
-
-          <!-- ── AFTER SUBMIT ── shown in place of the form; the phone
-               number becomes visible only now (PHONE VISIBILITY GATE). -->
-          <div id="softleadThanks" hidden>
-            <div class="approved-hero">
-              <div class="approved-check">
-                <svg viewBox="0 0 24 24">
-                  <polyline points="20,6 9,17 4,12" stroke-linecap="round" stroke-linejoin="round"></polyline>
-                </svg>
-              </div>
-              <div class="approved-title">Got it, thank you!</div>
-              <div class="approved-sub">A licensed advisor will reach out shortly to confirm what you may
-                qualify for. If you'd rather not wait, you can call now.</div>
-            </div>
-
-            <a href="#" id="ctaTop" class="cta-btn phone-link" data-phone-prefix="&#128222; TAP TO CALL: " hidden onclick="trackEvent('offer_click')">&nbsp;</a>
-            <div class="cta-sub-note">Takes about 10 minutes &middot; No obligation &middot; Free</div>
-            <div class="tap-fallback-note">If nothing happens when you tap: open this page in your phone's
-              browser (tap the <strong>&bull;&bull;&bull;</strong> or <strong>&#8942;</strong> menu at the top, choose
-              "Open in Browser"), then tap the number again.</div>
-
-            <!-- Testimonial — content comes from SOCIAL_PROOF.testimonial -->
-            <div class="testimonial" id="testimonialBox" hidden>
-              <div class="testi-quote" id="testiQuote"></div>
-              <div class="testi-foot">
-                <div class="testi-avatar" id="testiAvatar"></div>
-                <div>
-                  <div class="testi-name" id="testiName"></div>
-                  <div class="testi-meta" id="testiMeta"></div>
-                </div>
-                <div class="testi-badge" id="testiBadge"></div>
-              </div>
-            </div>
-
-            <div class="next-title">What Happens Next</div>
-            <div class="step-row">
-              <div class="step-circle">1</div>
-              <div>
-                <span class="step-strong">A licensed advisor reaches out</span>
-                <span class="step-desc">They confirm your situation and state.</span>
-              </div>
-            </div>
-            <div class="step-row">
-              <div class="step-circle">2</div>
-              <div>
-                <span class="step-strong">Get your real benefit amount</span>
-                <span class="step-desc">Figures vary by carrier and plan. The advisor confirms yours.</span>
-              </div>
-            </div>
-            <div class="step-row">
-              <div class="step-circle">3</div>
-              <div>
-                <span class="step-strong">Decide with no pressure</span>
-                <span class="step-desc">No obligation to enroll. You decide if, when, and whether to proceed.</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="fine">This is an advertisement for state-regulated indemnity insurance underwritten by
-            licensed insurance carriers. Benefit amounts, cost and eligibility vary by state, carrier and
-            plan, and are confirmed by a licensed agent. Not a government program or benefit, not
-            affiliated with the Social Security Administration, and not a replacement for Medicare.</div>
-
-        </div>
       </div>
 
-      <!-- Rest of the article, below the form -->
+      <!-- Rest of the article -->
       <div class="art-body">
 
         <p>
